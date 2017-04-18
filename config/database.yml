@@ -1,0 +1,7 @@
+development:
+  adapter: postgresql
+  database: article_archiver_development
+
+test:
+  adapter: postgresql
+  database: article_archiver_test
