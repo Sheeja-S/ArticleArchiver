@@ -52,11 +52,6 @@ get ('/user/home') do
   erb(:users_home)
 end
 
-
-get ('/failure') do
-  erb (:failure)
-end
-
 get('/search') do
   @articles = Article.all
 if params[:search]
