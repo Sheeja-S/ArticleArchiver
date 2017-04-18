@@ -1,5 +1,15 @@
 <div class="jumbotron">
-  <h1>Hello....</h1>
+  <h1>Jesus App</h1>
+
+  <form id="log_in" action="/main">
+    <label>User Name:</label>
+    <input type="text" name="user_name" id="user_name" required=true/>
+    <br />
+    <label>Password:</label>
+    <input type="text" name="user_name" id="user_name" required=true />
+    <button>log in</button>
+    <p> new user <a href="/sign_up_form">Sign up here!!</a> </p>
+  </form>
 </div>
 
 <% @articles.each do |article| %>
