@@ -9,6 +9,8 @@ configure do
 end
 
 get('/') do
+  @articles = Article.all
+  erb(:index)
   erb(:home)
 end
 
@@ -48,4 +50,26 @@ end
 get ('/user/home') do
   @user = User.find(session[:user_id])
   erb(:users_home)
+end
+
+
+get ('/failure') do
+  erb (:failure)
+end
+
+get('/search') do
+  @articles = Article.all
+if params[:search]
+  @articles = Article.search(params[:search])
+else
+  @articles = Article.all
+end
+  erb(:results)
+end
+
+post("/articles") do
+  title = params.fetch("title")
+  article = Article.new({:title => title, :link => "placeholder", :shared_by => "placeholder", :like => 0, :id => nil})
+  article.save()
+  redirect("/")
 end

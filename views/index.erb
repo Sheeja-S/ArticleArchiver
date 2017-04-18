@@ -1,0 +1,21 @@
+<div class="jumbotron">
+  <h1>Hello....</h1>
+</div>
+
+<% @articles.each do |article| %>
+  <li><%= article.title %>
+<% end %>
+
+<form action="/articles" method="post">
+  <label for="title"><p>Title of article</p></label>
+  <input id="title" name="title" type="text">
+  <button class="btn btn-primary" type="submit">Add article</button>
+</form>
+
+<form action="/search" method="get">
+  <select name="type">
+    <option value="title">Search by Article Title</option>
+    <option value="tags">Search by Tag</option>
+  <input type="text" name="search">
+  <button class="btn btn-primary" type="submit">Search</button>
+</form>
