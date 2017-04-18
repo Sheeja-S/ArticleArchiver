@@ -8,17 +8,25 @@ configure do
   set :session_secret, "jesus"
 end
 
-get('/') do
-  @articles = Article.all
-  erb(:index)
-  erb(:home)
+post("/articles") do
+  title = params.fetch("title")
+  article = Article.new({:title => title, :link => "placeholder", :shared_by => "placeholder", :like => 0, :id => nil})
+  article.save()
+  redirect("/")
 end
 
-get '/registrations/signup' do
+# landing
+get('/') do
+  erb(:index)
+end
+
+# sign up form for log in
+get '/signup' do
   erb :'/signup'
 end
 
-post ('/registrations') do
+# after signup
+post ('/signup') do
   @user = User.create(:name => params[:name], :email => params[:email], :password => params[:password])
   if @user.valid?
     @signup_success = true
@@ -28,11 +36,7 @@ post ('/registrations') do
   end
 end
 
-get '/sessions/logout' do
-  session.clear
-  redirect '/'
-end
-
+# to user login page
 get '/login' do
   erb (:login)
 end
@@ -41,52 +45,32 @@ post "/login" do
   user = User.find_by(:email => params[:email])
   if user && user.authenticate(params[:password])
       session[:user_id] = user.id
-      redirect "/user/home"
+      redirect "/main"
   else
-      erb (:logon_error)
+      erb (:login_error)
   end
 end
 
-get ('/user/home') do
-  @user = User.find(session[:user_id])
-  erb(:users_home)
-end
-
-get('/search') do
-  @articles = Article.all
-if params[:search]
-  @articles = Article.search(params[:search])
-else
-  @articles = Article.all
-end
-  erb(:results)
-end
-
-post("/articles") do
-  title = params.fetch("title")
-  article = Article.new({:title => title, :link => "placeholder", :shared_by => "placeholder", :like => 0, :id => nil})
-  article.save()
-  redirect("/")
-end
-
-# sign up form for log in
-get("/sign_up_form") do
-  erb(:sign_up_form)
+get '/logout' do
+  session.clear
+  redirect '/'
 end
 
 # the main page where search and list of all bookmark are shown
 get('/main') do
+  @user = User.find(session[:user_id])
   erb(:main)
-end
-
-# route to here after a successful sign up as a new user
-get('/sign_up_form/success') do
-  erb(:success)
 end
 
 #search method
 get('/search') do
-  erb(:main)
+  @articles = Article.all
+  if params[:search]
+    @articles = Article.search(params[:search])
+  else
+    @articles = Article.all
+  end
+  erb(:results)
 end
 
 #access tag from the nav bar
