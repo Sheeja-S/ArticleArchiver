@@ -5,7 +5,7 @@ also_reload("lib/*.rb")
 
 configure do
   enable :sessions unless test?
-  set :session_secret, "secret"
+  set :session_secret, "jesus"
 end
 
 get('/') do
