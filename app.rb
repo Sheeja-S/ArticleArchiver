@@ -36,7 +36,7 @@ post ('/signup') do
   end
 end
 
-# to user login page
+
 get '/login' do
   erb (:login)
 end
