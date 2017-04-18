@@ -1,4 +1,6 @@
 <div class="jumbotron">
+  <% if @signup_success %> <h1>Signup Sucess!</h1> <% end %>
+  <h1>Login</h1>
   <form action="/login" method="post">
     <div class="form-group">
       <label for="email">Email</label>

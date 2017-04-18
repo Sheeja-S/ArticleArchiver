@@ -17,11 +17,12 @@ get '/registrations/signup' do
 end
 
 post ('/registrations') do
-  user = User.create(:name => params[:name], :email => params[:email], :password => params[:password])
-  if user.valid?
+  @user = User.create(:name => params[:name], :email => params[:email], :password => params[:password])
+  if @user.valid?
+    @signup_success = true
     redirect "/login"
   else
-    redirect "/failure"
+    erb (:signup_error)
   end
 end
 
@@ -40,15 +41,11 @@ post "/login" do
       session[:user_id] = user.id
       redirect "/user/home"
   else
-      redirect "/failure"
+      erb (:logon_error)
   end
 end
 
 get ('/user/home') do
   @user = User.find(session[:user_id])
   erb(:users_home)
-end
-
-get ('/failure') do
-  erb (:failure)
 end
