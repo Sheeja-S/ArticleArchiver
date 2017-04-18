@@ -11,7 +11,6 @@ end
 get('/') do
   @articles = Article.all
   erb(:index)
-  erb(:home)
 end
 
 get '/registrations/signup' do
@@ -30,6 +29,10 @@ end
 get '/sessions/logout' do
   session.clear
   redirect '/'
+end
+
+get '/sessions/login' do
+  erb(:login)
 end
 
 get '/login' do
