@@ -8,13 +8,6 @@ configure do
   set :session_secret, "jesus"
 end
 
-post("/articles") do
-  title = params.fetch("title")
-  article = Article.new({:title => title, :link => "placeholder", :shared_by => "placeholder", :like => 0, :id => nil})
-  article.save()
-  redirect("/")
-end
-
 # landing
 get('/') do
   erb(:index)
@@ -86,4 +79,11 @@ end
 # access favorite from the nav bar
 get('/favorites/:id') do
   erb(:favorite)
+end
+
+post("/articles") do
+  title = params.fetch("title")
+  article = Article.new({:title => title, :link => "placeholder", :shared_by => "placeholder", :like => 0, :id => nil})
+  article.save()
+  redirect("/")
 end
