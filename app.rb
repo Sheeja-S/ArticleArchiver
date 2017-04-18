@@ -18,11 +18,12 @@ get '/registrations/signup' do
 end
 
 post ('/registrations') do
-  user = User.create(:name => params[:name], :email => params[:email], :password => params[:password])
-  if user.valid?
+  @user = User.create(:name => params[:name], :email => params[:email], :password => params[:password])
+  if @user.valid?
+    @signup_success = true
     redirect "/login"
   else
-    redirect "/failure"
+    erb (:signup_error)
   end
 end
 
@@ -45,7 +46,7 @@ post "/login" do
       session[:user_id] = user.id
       redirect "/user/home"
   else
-      redirect "/failure"
+      erb (:logon_error)
   end
 end
 
@@ -53,6 +54,7 @@ get ('/user/home') do
   @user = User.find(session[:user_id])
   erb(:users_home)
 end
+
 
 get ('/failure') do
   erb (:failure)
@@ -73,4 +75,39 @@ post("/articles") do
   article = Article.new({:title => title, :link => "placeholder", :shared_by => "placeholder", :like => 0, :id => nil})
   article.save()
   redirect("/")
+end
+
+# sign up form for log in
+get("/sign_up_form") do
+  erb(:sign_up_form)
+end
+
+# the main page where search and list of all bookmark are shown
+get('/main') do
+  erb(:main)
+end
+
+# route to here after a successful sign up as a new user
+get('/sign_up_form/success') do
+  erb(:success)
+end
+
+#search method
+get('/search') do
+  erb(:main)
+end
+
+#access tag from the nav bar
+get('/tags/:id') do
+  erb(:tag)
+end
+
+#after enter the book mark
+get('/bookmark') do
+  redirect back
+end
+
+# access favorite from the nav bar
+get('/favorites/:id') do
+  erb(:favorite)
 end
