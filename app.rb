@@ -51,6 +51,8 @@ end
 
 # the main page where search and list of all bookmark are shown
 get('/main') do
+  @articles = Article.all
+  @tags = Tag.all
   @user = User.find(session[:user_id])
   erb(:main)
 end
@@ -72,8 +74,25 @@ get('/tags/:id') do
 end
 
 #after enter the book mark
-get('/bookmark') do
-  redirect back
+post('/articles') do
+  @article = Article.create({:title => params.fetch('title'), :link => params.fetch('link'), :shared_by => params.fetch('shared_by')})
+  tag_ids = params.fetch('tag_ids', nil)
+  tag_create = params.fetch('tag_create', nil)
+  if tag_ids != nil and tag_ids.length > 0
+    tag_ids.each do |tag_id|
+      ArticlesTag.create({:article_id => @article.id, :tag_id => tag_id})
+    end
+  end
+  if tag_create != nil
+    @new_tag = Tag.create({:name => tag_create})
+    ArticlesTag.create({:article_id => @article.id, :tag_id => @new_tag.id})
+  end
+
+  if !@article.valid? or !@new_tag.valid?
+    erb(:add_article_error)
+  else
+    redirect to ('/main')
+  end
 end
 
 # access favorite from the nav bar

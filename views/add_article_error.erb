@@ -1,0 +1,17 @@
+<h3>Ooops....</h3>
+
+<ul>
+  <% if @article %>
+    <% @article.errors().full_messages().each do |message| %>
+      <li><%= message%></li>
+    <% end %>
+  <% end %>
+
+  <% if @new_tag %>
+    <% @new_tag.errors().full_messages().each do |message| %>
+      <li><%= message%></li>
+    <% end %>
+  <% end %>
+</ul>
+
+<h3><a href="/main" class="btn btn-primary">Try Again</a></h3>
