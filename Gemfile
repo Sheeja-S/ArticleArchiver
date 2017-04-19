@@ -6,7 +6,7 @@ gem("rake")
 gem("pg")
 gem("sinatra")
 gem 'bcrypt'
-
+gem 'rack-flash3'
 
 group(:test) do
   gem 'shoulda-matchers'

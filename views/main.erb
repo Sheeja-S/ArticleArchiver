@@ -14,7 +14,7 @@
 <% if @articles.any? %>
   <ul>
     <% @articles.each do |article| %>
-      <li><%= article.title%>, <%= article.link%>, <% article.tags.each do |tag| %><%= tag.name%><% end %></li>
+      <li><%= article.title%>, <%= article.link%>, shared_by <%= article.shared_by%> | tags: <% article.tags.each do |tag| %><%= tag.name%><% end %></li>
     <% end %>
   </ul>
 <% end %>
