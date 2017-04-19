@@ -50,6 +50,11 @@
 <form id="search" action="/search">
   <label>Search:</label>
   <input type="text" name="user_name" id="user_name" required=true/>
+  <select id="search_option" name="search_option">
+    <% @stores.each() do |store| %>
+      <option value="<%= store.id() %>"><%= store.name() %></option>
+    <% end %>
+  </select>
   <button>Search</button>
 </form>
 
