@@ -1,3 +1,7 @@
+production:
+  adapter: postgresql
+  database: article_archiver_production
+
 development:
   adapter: postgresql
   database: article_archiver_development
