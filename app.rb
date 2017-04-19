@@ -38,11 +38,14 @@ post ('/signup') do
 end
 
 get ('/link') do
+  @@url = params.fetch('url')
   @@object = LinkThumbnailer.generate(params[:url])
   redirect('/crawler')
 end
 
 get ('/crawler') do
+  @user = User.find_by(:id => session[:user_id])
+  @tags = Tag.all
   erb(:crawler)
 end
 
