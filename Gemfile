@@ -7,6 +7,7 @@ gem("pg")
 gem("sinatra")
 gem 'bcrypt'
 gem 'link_thumbnailer'
+gem 'rack-flash3'
 
 
 group(:test) do
