@@ -29,6 +29,14 @@ post ('/signup') do
   end
 end
 
+get ('/link') do
+  @@object = LinkThumbnailer.generate(params[:url])
+  redirect('/crawler')
+end
+
+get ('/crawler') do
+  erb(:crawler)
+end
 
 get '/login' do
   erb (:login)

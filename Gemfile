@@ -6,6 +6,7 @@ gem("rake")
 gem("pg")
 gem("sinatra")
 gem 'bcrypt'
+gem 'link_thumbnailer'
 
 
 group(:test) do
