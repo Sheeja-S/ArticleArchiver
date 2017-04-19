@@ -9,9 +9,11 @@
     <nav>
       <div>
         <a href="/main">Home</a>
-        <form id="log_in" action="/bookmark">
-          <input type="text" name="add_bookmark" id="add_bookmark" placeholder="add bookmark"/>
-          <button>bookmark</button>
+        <form id="add_article" action="/add_article" method="post">
+          <input type="text" name="new_article_title" id="new_article_title" placeholder="add atricle title"/>
+          <input type="test" name="new_article_link" id="new_article_link" placeholder="add link" />
+          <input type="hidden" name="user_name" id="user_name" value="<%= @user.name() %>">
+          <button type="submit">bookmark</button>
         </form>
       </div>
       <div>

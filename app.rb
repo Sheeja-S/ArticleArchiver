@@ -19,8 +19,8 @@ get '/registrations/signup' do
 end
 
 post ('/registrations') do
-  @user = User.create(:name => params[:name], :email => params[:email], :password => params[:password])
-  if @user.valid?
+  @@user = User.create(:name => params[:name], :email => params[:email], :password => params[:password])
+  if @@user.valid?
     @signup_success = true
     redirect "/login"
   else
@@ -100,8 +100,11 @@ get('/tags/:id') do
 end
 
 #after enter the book mark
-get('/bookmark') do
-  redirect back
+post('/add_article') do
+  title = params.fetch('new_article_title')
+  link = params.fetch('new_article_link')
+  shared_by = params.fetch('user_name')
+  Article.create({:title => title, :link => link, :shared_by => shared_by, :like => nil})
 end
 
 # access favorite from the nav bar
