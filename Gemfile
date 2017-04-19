@@ -10,8 +10,9 @@ gem("sinatra")
 gem ("dotenv")
 gem ("bcrypt")
 gem ("celluloid-io")
-
-
+gem 'bcrypt'
+gem 'link_thumbnailer'
+gem 'rack-flash3'
 
 group(:development,:test) do
   gem("shoulda-matchers")
