@@ -1,7 +1,10 @@
+require_relative "./my_nav_module"
 require("bundler/setup")
 Bundler.require(:default)
 Dir[File.dirname(__FILE__) + '/lib/*.rb'].each { |file| require file }
 also_reload("lib/*.rb")
+
+helpers MyNavModule
 
 configure do
   enable :sessions unless test?
@@ -55,6 +58,7 @@ get('/main') do
   @articles = Article.all
   @tags = Tag.all
   @user = User.find(session[:user_id])
+  @nav = nav_function (request)
   erb(:main)
 end
 
