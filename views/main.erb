@@ -1,7 +1,5 @@
-<h1>Welcome, <%=@user.name%>!</h1>
-<a href="/logout">Log Out</a>
-
 <%= @nav %>
+<h1>Welcome, <%=@user.name%>!</h1>
 
 <form id="search" action="/search">
   <label>Search:</label>
@@ -13,7 +11,7 @@
 <% if @articles.any? %>
   <ul>
     <% @articles.each do |article| %>
-      <li><%= article.title%>, <%= article.link%>, shared_by <%= article.shared_by%> | tags: <% article.tags.each do |tag| %><%= tag.name%><% end %></li>
+      <li><%= article.title%>, <a href="<%= article.link%>"><%= article.link%></a> , shared_by <%= article.shared_by%> | tags: <% article.tags.each do |tag| %><%= tag.name%><% end %></li>
     <% end %>
   </ul>
 <% end %>

@@ -1,17 +1,8 @@
-<h1>Testing the crawler</h1>
+<h1>Feel Like Sharing It?</h1>
 <% if @@object %>
   <h2><%= @@object.title %></h2>
-
     <img src="<%= @@object.images.first.src.to_s %>"/>
-
-    <p>(no image available)</p>
-
-
     <p><%= @@object.description %></p>
-
-    <p>(no description available)</p>
-
-
 
     <form action="/articles" method="post">
       <h3>Share this article</h3>
@@ -36,7 +27,7 @@
       <input type="text" name="tag_create" class="form-control">
       <button type="submit" class="btn btn-success">Share</button>
     </form>
-    <a href="/main">Cancel</a>
+    <a href="/main" class="btn btn-danger">Cancel</a>
 <% else %>
   <div class="jumbotron">
     <h3>Ooops....</h3>
