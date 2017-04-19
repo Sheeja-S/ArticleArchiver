@@ -1,10 +1,13 @@
 require_relative "./my_nav_module"
+require_relative "./web"
 require("bundler/setup")
+require ("sinatra/base")
 Bundler.require(:default)
 Dir[File.dirname(__FILE__) + '/lib/*.rb'].each { |file| require file }
 also_reload("lib/*.rb")
 
 helpers MyNavModule
+helpers SlackJesusbot
 
 configure do
   enable :sessions unless test?
