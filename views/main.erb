@@ -11,7 +11,7 @@
 <% if @articles.any? %>
   <ul>
     <% @articles.each do |article| %>
-      <li><%= article.title%>, <a href="<%= article.link%>"><%= article.link%></a> , shared_by <%= article.shared_by%> | tags: <% article.tags.each do |tag| %><%= tag.name%><% end %></li>
+      <li><img class = "article-image" src="<%= article.image%>" alt="image"> <%= article.title%>, <a href="<%= article.link%>"><%= article.link%></a> , shared_by <%= article.shared_by%> | tags: <% article.tags.each do |tag| %><%= tag.name%><% end %></li>
     <% end %>
   </ul>
 <% end %>
