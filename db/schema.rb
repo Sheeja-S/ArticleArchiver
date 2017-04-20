@@ -15,13 +15,6 @@ ActiveRecord::Schema.define(version: 20170419083528) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "ar_users", force: :cascade do |t|
-    t.string "email"
-    t.string "hashed_password"
-    t.string "salt"
-    t.index ["email"], name: "index_ar_users_on_email", unique: true, using: :btree
-  end
-
   create_table "articles", force: :cascade do |t|
     t.string   "title"
     t.string   "link"
