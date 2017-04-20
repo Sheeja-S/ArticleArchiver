@@ -1,11 +1,9 @@
 require_relative "./my_nav_module"
-<<<<<<< HEAD
-require "pry"
-=======
-require_relative "./web"
-require 'rack-flash'
 
->>>>>>> f7e919a187111dcc2583f98b68f042e306f165c1
+require "pry"
+
+require_relative "./web"
+
 require("bundler/setup")
 require ("sinatra/base")
 Bundler.require(:default)
