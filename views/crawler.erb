@@ -1,0 +1,42 @@
+<h1>Feel Like Sharing It?</h1>
+<% if @@object %>
+  <h2><%= @@object.title %></h2>
+    <img src="<%= @@object.images.first.src.to_s %>"/>
+    <p><%= @@object.description %></p>
+
+    <form action="/articles" method="post">
+      <h3>Share this article</h3>
+      <div class="form-group">
+        <label for="title">Title</label>
+        <input type="text" name="title" value="<%= @@object.description %>" class="form-control">
+      </div>
+      <div class="form-group">
+        <label for="link">Link</label>
+        <input type="text" name="link" value="<%= @@url %>" class="form-control">
+      </div>
+      <div class="form-group">
+        <label for="link">Image</label>
+        <input type="text" name="image" value="<%= @@object.images.first.src.to_s %>" class="form-control">
+      </div>
+      <input type="hidden" name="shared_by" value="<%= @user.name%>">
+      <% if @tags %>
+      <label for="tag_ids[]">Select A tag</label>
+        <select multiple class="form-control" name="tag_ids[]">
+          <% @tags.each do |tag| %>
+            <option value="<%= tag.id%>"><%= tag.name%></option>
+          <% end %>
+        </select>
+      <% end %>
+      <label for="tag_create">Or Create One Yourself</label>
+      <input type="text" name="tag_create" class="form-control">
+      <button type="submit" class="btn btn-success">Share</button>
+    </form>
+    <a href="/main" class="btn btn-danger">Cancel</a>
+<% else %>
+  <div class="jumbotron">
+    <h3>Ooops....</h3>
+    <p>Our crawler cannot find what you typed in</p>
+    <a href="/main" class="btn btn-primary">Try again</a>
+  </div>
+
+<% end %>

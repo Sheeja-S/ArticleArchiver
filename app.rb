@@ -1,16 +1,24 @@
 require_relative "./my_nav_module"
+<<<<<<< HEAD
 require "pry"
+=======
+require_relative "./web"
+require 'rack-flash'
+
+>>>>>>> f7e919a187111dcc2583f98b68f042e306f165c1
 require("bundler/setup")
+require ("sinatra/base")
 Bundler.require(:default)
 Dir[File.dirname(__FILE__) + '/lib/*.rb'].each { |file| require file }
 also_reload("lib/*.rb")
 
 helpers MyNavModule
+helpers SlackJesusbot
 
-configure do
-  enable :sessions unless test?
-  set :session_secret, "jesus"
-end
+use Rack::Session::Cookie, :key => 'rack.session',
+                           :path => '/',
+                           :expire_after => 1200, # In seconds
+                           :secret => 'jesus'
 
 # landing
 get('/') do
@@ -34,6 +42,17 @@ post ('/signup') do
   end
 end
 
+get ('/link') do
+  @@url = params.fetch('url')
+  @@object = LinkThumbnailer.generate(params[:url])
+  redirect('/crawler')
+end
+
+get ('/crawler') do
+  @user = User.find_by(:id => session[:user_id])
+  @tags = Tag.all
+  erb(:crawler)
+end
 
 get '/login' do
   erb (:login)
@@ -53,6 +72,8 @@ get '/logout' do
   session.clear
   redirect '/'
 end
+
+
 
 # the main page where search and list of all bookmark are shown
 get('/main') do
@@ -104,7 +125,7 @@ end
 
 #after enter the book mark
 post('/articles') do
-  @article = Article.create({:title => params.fetch('title'), :link => params.fetch('link'), :shared_by => params.fetch('shared_by')})
+  @article = Article.create({:title => params.fetch('title'), :link => params.fetch('link'), :image => params.fetch('image'),:shared_by => params.fetch('shared_by')})
   tag_ids = params.fetch('tag_ids', nil)
   tag_create = params.fetch('tag_create', nil)
   if tag_ids != nil and tag_ids.length > 0

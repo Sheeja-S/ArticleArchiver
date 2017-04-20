@@ -1,7 +1,5 @@
-<h1>Welcome, <%=@user.name%>!</h1>
-<a href="/logout">Log Out</a>
-
 <%= @nav %>
+<h1>Welcome, <%=@user.name%>!</h1>
 
 <form id="search" action="/search">
   <label>Search:</label>
@@ -15,17 +13,11 @@
   <button>Search</button>
 </form>
 
-
 <h2>The list of bookmark below:</h2>
 <% if @articles.any? %>
   <ul>
     <% @articles.each do |article| %>
-      <li><%= article.title%>, <%= article.link%>, <% article.tags.each do |tag| %><%= tag.name%><% end %>
-      <form>
-        <label></label>
-      </form>
-
-      </li>
+      <li><img class = "article-image" src="<%= article.image%>" alt="image"> <%= article.title%>, <a href="<%= article.link%>"><%= article.link%></a> , shared_by <%= article.shared_by%> | tags: <% article.tags.each do |tag| %><%= tag.name%><% end %></li>
     <% end %>
   </ul>
 <% end %>
