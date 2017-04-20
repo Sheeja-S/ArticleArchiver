@@ -7,7 +7,6 @@ Dir[File.dirname(__FILE__) + '/lib/*.rb'].each { |file| require file }
 also_reload("lib/*.rb")
 
 helpers MyNavModule
-helpers SlackJesusbot
 
 use Rack::Session::Cookie, :key => 'rack.session',
                            :path => '/',
