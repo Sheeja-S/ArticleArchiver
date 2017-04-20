@@ -2,8 +2,6 @@ require_relative "./my_nav_module"
 
 require "pry"
 
-require_relative "./web"
-
 require("bundler/setup")
 require ("sinatra/base")
 Bundler.require(:default)
@@ -11,7 +9,6 @@ Dir[File.dirname(__FILE__) + '/lib/*.rb'].each { |file| require file }
 also_reload("lib/*.rb")
 
 helpers MyNavModule
-helpers SlackJesusbot
 
 use Rack::Session::Cookie, :key => 'rack.session',
                            :path => '/',
