@@ -1,7 +1,8 @@
 <% if @articles.present? %>
   <% @articles.each do |article| %>
-  <%= article.title %>
+  <%= article.title %>, tags: <% article.tags.each do |tag|%> <%= tag.name%> <% end %>
   <% end %>
 <% else %>
   <p>There are no articles containing the term(s) <%= params[:search] %>.</p>
 <% end %>
+<a href="/main">Try Again</a>

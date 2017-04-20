@@ -1,4 +1,5 @@
 require_relative "./my_nav_module"
+require "pry"
 require("bundler/setup")
 Bundler.require(:default)
 Dir[File.dirname(__FILE__) + '/lib/*.rb'].each { |file| require file }
@@ -63,18 +64,41 @@ get('/main') do
 end
 
 #search method
+# get('/search') do
+#   @articles = Article.all
+#   if params[:search]
+#     @articles = Article.search(params[:search])
+#   else
+#     @articles = Article.all
+#   end
+#   erb(:results)
+# end
+
 get('/search') do
-  @articles = Article.all
+  @tags = Tag.all
+  @users = User.all
+  search_option = params.fetch("search_option")
   if params[:search]
-    @articles = Article.search(params[:search])
-  else
-    @articles = Article.all
+    if search_option == "tag"
+      @tag = Tag.search(params[:search]).first()
+      if @tag
+        @articles = @tag.articles
+      end
+    elsif search_option == "title"
+      @articles = Article.search(params[:search])
+    elsif search_option == "user_name"
+      @user = User.search(params[:search]).first()
+      if @user
+        @articles = @user.articles
+      end
+    end
   end
   erb(:results)
 end
 
 #access tag from the nav bar
 get('/tags/:id') do
+  @tag = Tag.find(params.fetch("id"))
   erb(:tag)
 end
 

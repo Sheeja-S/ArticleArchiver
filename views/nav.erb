@@ -31,8 +31,13 @@
   <div>
     <p>tag</p>
     <ul>
-      <li><a href="/tags/:id">tag1</a></li>
-      <li><a href="/tags/:id">tag2</a></li>
+      <li>
+        <% if @tags.present? %>
+        <% @tags.each do |tag| %>
+        <li><a href="/tags/<%= tag.id()%>"><%= tag.name %><% end %></a></li>
+    <% else %>
+      <li>There are no articles containing the term(s) </li>
+    <% end %>
     </ul>
   </div>
   <div>

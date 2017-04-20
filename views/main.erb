@@ -5,11 +5,12 @@
 
 <form id="search" action="/search">
   <label>Search:</label>
-  <input type="text" name="user_name" id="user_name" required=true/>
+  <input type="text" name="search" required=true/>
+  <label>by:</label>
   <select id="search_option" name="search_option">
-    <% @stores.each() do |store| %>
-      <option value="<%= store.id() %>"><%= store.name() %></option>
-    <% end %>
+      <option value="tag">tag</option>
+      <option value="title">title</option>
+      <option value="user_name">user name</option>
   </select>
   <button>Search</button>
 </form>
@@ -19,7 +20,12 @@
 <% if @articles.any? %>
   <ul>
     <% @articles.each do |article| %>
-      <li><%= article.title%>, <%= article.link%>, <% article.tags.each do |tag| %><%= tag.name%><% end %></li>
+      <li><%= article.title%>, <%= article.link%>, <% article.tags.each do |tag| %><%= tag.name%><% end %>
+      <form>
+        <label></label>
+      </form>
+
+      </li>
     <% end %>
   </ul>
 <% end %>
