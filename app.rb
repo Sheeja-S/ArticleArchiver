@@ -1,11 +1,5 @@
 require_relative "./my_nav_module"
-<<<<<<< HEAD
 require "pry"
-=======
-require_relative "./web"
-require 'rack-flash'
-
->>>>>>> f7e919a187111dcc2583f98b68f042e306f165c1
 require("bundler/setup")
 require ("sinatra/base")
 Bundler.require(:default)
@@ -13,7 +7,6 @@ Dir[File.dirname(__FILE__) + '/lib/*.rb'].each { |file| require file }
 also_reload("lib/*.rb")
 
 helpers MyNavModule
-helpers SlackJesusbot
 
 use Rack::Session::Cookie, :key => 'rack.session',
                            :path => '/',
