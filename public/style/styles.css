@@ -1,3 +1,7 @@
+body{
+  background: #f63;
+}
+
 .article-image{
   height: 50px;
   width: auto;
@@ -32,4 +36,17 @@ html.loading body {
     /* Ensures that the transition only runs in one direction */
     -webkit-transition: opacity 0;
     transition: opacity 0;
+}
+ul{
+  list-style: none;
+}
+ul>li{
+  border:1px solid black;
+}
+li.close{
+  color: red;
+}
+button#removeTag{
+  border:1px solid black;
+
 }

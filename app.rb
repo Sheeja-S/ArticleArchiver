@@ -129,6 +129,7 @@ post('/articles') do
     end
   end
   if tag_create != nil
+    
     @new_tag = Tag.create({:name => tag_create})
     ArticlesTag.create({:article_id => @article.id, :tag_id => @new_tag.id})
   end
@@ -138,6 +139,12 @@ post('/articles') do
   else
     redirect to ('/main')
   end
+end
+
+post('/tags') do
+  tag_create=params.fetch('tag_create', nil)
+  @new_tag = Tag.create({:name => tag_create})
+  redirect to ('/crawler')
 end
 
 # access favorite from the nav bar
