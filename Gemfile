@@ -20,5 +20,6 @@ group(:development,:test) do
   gem("capybara")
   gem("pry")
   gem("foreman")
+  gem ('font-awesome-less')
 
 end

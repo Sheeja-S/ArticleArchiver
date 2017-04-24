@@ -8,15 +8,17 @@ body{
 }
 
 html {
-    -webkit-transition: background-color 1s;
-    transition: background-color 1s;
+  -webkit-transition: background-color 1s;
+  transition: background-color 1s;
 }
+
 html, body {
     /* For the loading indicator to be vertically centered ensure */
     /* the html and body elements take up the full viewport */
     min-height: 100%;
 }
-html.loading {
+html.loading
+{
     /* Replace #333 with the background-color of your choice */
     /* Replace loading.gif with the loading image of your choice */
     background: #333 url('loading.gif') no-repeat 50% 50%;
@@ -28,6 +30,7 @@ html.loading {
 body {
     -webkit-transition: opacity 1s ease-in;
     transition: opacity 1s ease-in;
+
 }
 html.loading body {
     /* Make the contents of the body opaque during loading */
@@ -37,6 +40,7 @@ html.loading body {
     -webkit-transition: opacity 0;
     transition: opacity 0;
 }
+
 ul{
   list-style: none;
 }
@@ -48,5 +52,158 @@ li.close{
 }
 button#removeTag{
   border:1px solid black;
+
+
+.slogan {
+  text-align: center;
+}
+
+.local {
+  display:block;
+  margin:0 auto;
+}
+
+.navbar {
+  font-family: monospace;
+font-size: -webkit-xxx-large;
+}
+
+.w3-container1 {
+  font-family: monospace;
+  font-size: -webkit-xxx-large;
+}
+
+.myButton {
+	background-color:transparent;
+	-moz-border-radius:28px;
+	-webkit-border-radius:28px;
+	border-radius:28px;
+	border:1px solid black;
+	display:inline-block;
+	cursor:pointer;
+	color:#1a151a;
+	font-family:monospace;
+	font-size:16px;
+	padding:16px 31px;
+	text-decoration:none;
+	text-shadow:0px 1px 0px #0f120f;
+}
+.myButton:hover {
+	background-color:transparent;
+}
+.myButton:active {
+	position:relative;
+	top:1px;
+}
+
+h2
+{
+ font-family:monospace;
+}
+
+.list
+{
+  font-size: 23px;
+  font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif
+}
+
+.searchform
+{
+  font-size: 25px;
+  font-family: monospace;
+}
+
+select
+  {
+      font-family:monospace;
+      font-size: 25px;
+      background-color: white;
+      border: 1px solid black;
+  }
+
+.image1
+{
+  display: block;
+  margin: auto;
+  height: 350px;
+  width:400px;
+}
+
+.formlabels
+{
+  font-family: monospace;
+  font-size: 22px;
+}
+
+input
+{
+  font-family: monospace;
+}
+
+hr
+{
+    height: 30px;
+    border-style: solid;
+    border-color: black;
+    border-width: 1px 0 0 0;
+    border-radius: 20px;
+    display: block;
+
+}
+
+hr::before{
+  display: block;
+    content: "";
+    height: 30px;
+    margin-top: -31px;
+    border-style: solid;
+    border-color: black;
+    border-width: 0 0 1px 0;
+    border-radius: 20px;
+}
+
+.elements
+{
+  font-size: 20px;
+  color: white;
+}
+
+.button2
+ {
+  background-color: black;
+  -webkit-border-radius: 10px;
+  border-radius: 10px;
+  border: none;
+  color: white;
+  cursor: pointer;
+  display: inline-block;
+  font-family: Arial;
+  font-size: 25px;
+  padding: 5px 10px;
+  text-align: center;
+  text-decoration: none;
+}
+
+@keyframes glowing {
+  0% { background-color: black; box-shadow: 0 0 3px #black; }
+  50% { background-color: grey; box-shadow: 0 0 10px #grey; }
+  100% { background-color: black; box-shadow: 0 0 3px #black; }
+}
+
+.button2
+{
+  animation: glowing 1500ms infinite;
+  margin-left:40%;
+}
+
+.error
+{
+  position:absolute;
+   width:592px; /*image width */
+   height:512px; /*image height */
+   left:50%;
+   top:60%;
+   margin-left:-296px; /*image width/2 */
+   margin-top:-256px; /*image height/2 */
 
 }

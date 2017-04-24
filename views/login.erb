@@ -1,16 +1,29 @@
-<div class="jumbotron">
-  <% if @signup_success %> <h1>Signup Sucess!</h1> <% end %>
-  <h1>Login</h1>
-  <form action="/login" method="post">
-    <div class="form-group">
-      <label for="email">Email</label>
-      <input type="text" name="email" class="form-control">
-    </div>
-    <div class="form-group">
-      <label for="password">Password</label>
-      <input type="password" name="password" class="form-control">
-    </div>
-    <button type="submit" class="btn btn-success">Log In</button>
-  </form>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+
+<div>
+  <h2 class="w3-container1">Log in</h2>
 </div>
-<a href="/">Home</a>
+<br />
+
+
+<form class="w3-container" action="/login" method="post">
+
+  <div class="form-group">
+    <label for="email">Email</label>
+    <input class="w3-input" type="text" name="email">
+  </div>
+  <div class="form-group">
+    <label for="password">Password</label>
+    <input class="w3-input" type="password" name="password">
+  </div>
+
+  <button type="submit" class="myButton">Log In</button>
+  <a class="myButton" style="text-decoration :none" href="/">Home</a>
+</form>
+
+<br /><br /><br /><br /><br />
+
+
+
+<img src="https://staticinstapaper.s3.amazonaws.com/img/landing_read_anywhere.png" align="right">
