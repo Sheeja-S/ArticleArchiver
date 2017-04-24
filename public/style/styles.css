@@ -1,12 +1,17 @@
+body{
+  background: #f63;
+}
+
 .article-image{
   height: 50px;
   width: auto;
 }
 
 html {
-    -webkit-transition: background-color 1s;
-    transition: background-color 1s;
+  -webkit-transition: background-color 1s;
+  transition: background-color 1s;
 }
+
 html, body {
     /* For the loading indicator to be vertically centered ensure */
     /* the html and body elements take up the full viewport */
@@ -35,6 +40,19 @@ html.loading body {
     -webkit-transition: opacity 0;
     transition: opacity 0;
 }
+
+ul{
+  list-style: none;
+}
+ul>li{
+  border:1px solid black;
+}
+li.close{
+  color: red;
+}
+button#removeTag{
+  border:1px solid black;
+
 
 .slogan {
   text-align: center;
@@ -187,4 +205,5 @@ hr::before{
    top:60%;
    margin-left:-296px; /*image width/2 */
    margin-top:-256px; /*image height/2 */
+
 }

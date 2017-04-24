@@ -1,47 +1,151 @@
-<h2>Like it, Share it!</h2>
-<br />
+<h1>Feel Like Sharing It?</h1>
 <% if @@object %>
-    <img class="image1" src="<%= @@object.images.first.src.to_s %>"/>
-    <h2><%= @@object.title %></h2>
-    <br />
-    <br />
+  <h2><%= @@object.title %></h2>
+    <img src="<%= @@object.images.first.src.to_s %>"/>
+    <p><%= @@object.description %></p>
 
     <form action="/articles" method="post">
+      <h3>Share this article</h3>
+
       <div class="form-group">
-        <label class="formlabels" for="title">Description :</label>
+        <label for="title">Title</label>
         <input type="text" name="title" value="<%= @@object.description %>" class="form-control">
       </div>
+
       <div class="form-group">
-        <label class="formlabels" for="link">Link : </label>
+        <label for="link">Link</label>
         <input type="text" name="link" value="<%= @@url %>" class="form-control">
       </div>
+
       <div class="form-group">
-        <label class="formlabels" for="link">Image :</label>
+        <label for="link">Image</label>
         <input type="text" name="image" value="<%= @@object.images.first.src.to_s %>" class="form-control">
       </div>
-        <input type="hidden" name="shared_by" value="<%= @user.name%>">
-        <% if @tags %>
-        <label class="formlabels" for="tag_ids[]">Select A tag :</label>
-        <select multiple class="form-control" name="tag_ids[]">
+
+      <input type="hidden" name="shared_by" value="<%= @user.name%>">
+      <% if @tags %>
+      <label for="tag_ids[]">Select A tag</label>
+        <select id="tags" multiple="multiple" class="form-control" name="tag_ids[]">
           <% @tags.each do |tag| %>
-           <option value="<%= tag.id%>"><%= tag.name%></option>
+            <option value="<%= tag.id%>"><%= tag.name%></option>
           <% end %>
         </select>
-          <% end %>
-        <label class="formlabels" for="tag_create">Or Create a Tag :</label>
-        <input type="text" name="tag_create" class="form-control">
-      <br />
-      <br />
-        <button type="submit" class="myButton">Share it!</button>
-          <a href="/main" class="myButton">Cancel</a>
+      <% end %>
+
+      <script>
+      // var select = $('tags');
+      // var input = $('tag');
+      // select.onchange = function() {
+      //   input.value = select.value;
+      // }
+
+      // var addTag= $('add_tag');
+      // addTag.onclick(function(){
+      //   tagToAdd= $('tag_to_add').value;
+      //   $('tagList').append("<li>" + tagToAdd + "</li>")
+      //
+      // });
+
+      window.onload = onReady;
+
+      function onReady(){
+        a = []
+        var button = document.getElementById("addtag");
+
+        button.onclick = addTags;
+        function addTags(){
+          var tagInput =  document.getElementById('tag_to_add');
+          var tagName = tagInput.value;
+          tagInput.value = "";
+
+          var li = document.createElement('LI');
+          li.className = "close";
+          var ul = document.getElementById('personaltagList');
+          li.innerHTML=(tagName + "<button onclick='removePersonalTagger(this)' type='button'>&times;</button>")
+          ul.appendChild(li);
+          var hiddenInput =  document.getElementById('personal_tags');
+          
+        };
+
+        var select = document.getElementById("tags")
+        select.onchange = checkselect;
+        function checkselect(){
+          var index= select.selectedIndex;
+          // var value = select[index].value;
+          var ul = document.getElementById('tagList');
+          ul.innerHTML = '';
+          for (var i = 0; i < select.options.length; i++) {
+            if(select.options[i].selected){
+              var li = document.createElement('LI');
+              // li.setAttribute("class", "close");
+              li.className = "close";
+              var value = select.options[i].value;
+              li.innerHTML=(select.options[i].text + "<button id = id" + i + ' value = ' + value +" onclick='removeTagger(this)' type='button'>&times;</button>")
+              ul.appendChild(li);
+            }
+          }
+        }
+
+
+
+      // tags.remove(tags.selectedIndex);
+      }
+
+      function removePersonalTagger(deleteButton){
+        deleteButton.parentNode.remove();
+      }
+
+
+      function removeTagger(deleteButton){
+
+        var index = parseInt(deleteButton.value);
+        var tags= document.getElementById("tags").options;
+        // tags[index].selected = false;
+        // var test = tags[index].selected;
+        var listOfTags = document.getElementById("tags");
+
+        $('#tags').multiselect('deselect', index);
+
+        var select = document.getElementById("tags")
+        var index= select.selectedIndex;
+        // var value = select[index].value;
+        var ul = document.getElementById('tagList');
+        ul.innerHTML = '';
+        for (var i = 0; i < select.options.length; i++) {
+          if(select.options[i].selected){
+            var li = document.createElement('LI');
+            // li.setAttribute("class", "close");
+            li.className = "close";
+            var value = select.options[i].value;
+            li.innerHTML=(select.options[i].text + "<button id = id" + i + ' value = ' + value +" onclick='removeTagger(this)' type='button'>&times;</button>")
+            ul.appendChild(li);
+          }
+        }
+
+
+
+      }
+      </script>
+      <ul id ="tagList">
+      </ul>
+
+      <ul id ="personaltagList">
+        <input type="hidden" id="personal_tags" name="personal_tags[]">
+      </ul>
+
+      <label for="tag_create">Or Create One Yourself</label>
+
+      <input id = "tag_to_add" type="text" name="tag_create" class="form-control">
+      <input type="button" id="addtag"  value="Add Tag">
+
+      <button type="submit" class="btn btn-success">Share</button>
     </form>
+    <a href="/main" class="btn btn-danger">Cancel</a>
+<% else %>
+  <div class="jumbotron">
+    <h3>Ooops....</h3>
+    <p>Our crawler cannot find what you typed in</p>
+    <a href="/main" class="btn btn-primary">Try again</a>
+  </div>
 
-
-
-      <% else %>
-
-      <h2>Ooops....</h2>
-      <h2>Our crawler cannot find what you typed in</h2>
-      <a href="/main" class="button2">Try again</a>
-    </div>
-    <% end %>
+<% end %>
