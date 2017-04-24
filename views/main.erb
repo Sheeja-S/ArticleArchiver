@@ -1,23 +1,38 @@
 <%= @nav %>
-<h1>Welcome, <%=@user.name%>!</h1>
+<h2>Welcome, <%=@user.name%>!</h2>
 
 <form id="search" action="/search">
-  <label>Search:</label>
-  <input type="text" name="search" required=true/>
-  <label>by:</label>
+  <label class="searchform">Search shared websites list by </label>
   <select id="search_option" name="search_option">
-      <option value="tag">tag</option>
-      <option value="title">title</option>
-      <option value="user_name">user name</option>
+    <option value=" tag">tag</option>
+    <option value=" title">title</option>
+    <option value=" suser_name">user name</option>
   </select>
-  <button>Search</button>
+  <input type="text" name="search" required=true/>
+
+  <button class="myButton">Go!</button>
 </form>
 
-<h2>The list of bookmark below:</h2>
+<h2>The list of shared websites:</h2>
+<br />
+<br />
+
+
 <% if @articles.any? %>
-  <ul>
-    <% @articles.each do |article| %>
-      <li><img class = "article-image" src="<%= article.image%>" alt="image"> <%= article.title%>, <a href="<%= article.link%>"><%= article.link%></a> , shared_by <%= article.shared_by%> | tags: <% article.tags.each do |tag| %><%= tag.name%><% end %></li>
-    <% end %>
-  </ul>
+<ul class="list">
+  <% @articles.each do |article| %>
+  <i class="fa fa-spinner fa-pulse"></i>
+  <img class = "article-image" src="<%= article.image%>" alt="image">
+  <br />
+  <br /><i class="fa fa-link" aria-hidden="true"></i>  <a  style="text-decoration :none" href="<%= article.link%>"><%= article.link%></a>
+  <br />
+  <br />
+  <i class="fa fa-info-circle" aria-hidden="true"></i><%= article.title%>
+  <br />
+  <br /><i class="fa fa-user" aria-hidden="true"></i>
+  <%= article.shared_by%>  |
+  <i class="fa fa-tag" aria-hidden="true"></i> <% article.tags.each do |tag| %><%= tag.name%><% end %>
+  <hr />
+  <% end %>
+</ul>
 <% end %>
