@@ -1,5 +1,7 @@
 require_relative "./my_nav_module"
+
 require "pry"
+
 require("bundler/setup")
 require ("sinatra/base")
 Bundler.require(:default)

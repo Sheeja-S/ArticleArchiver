@@ -1,9 +1,15 @@
-<h3>Ooops....</h3>
+<h2>Ooops....</h2>
 
 <ul>
-  <% @user.errors().full_messages().each do |message| %>
+  <h3>
+    <% @user.errors().full_messages().each do |message| %>
     <li><%= message%></li>
-  <% end %>
+    <% end %>
+  </h3>
 </ul>
 
-<h3><a href="/signup" class="btn btn-primary">Try Again</a></h3>
+<h3><a href="/signup" class="button2">Try Again</a></h3>
+<br />
+
+
+<img  class="error" src="emoji.gif">

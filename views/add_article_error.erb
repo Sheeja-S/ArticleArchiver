@@ -1,17 +1,20 @@
 <h3>Ooops....</h3>
-
-<ul>
-  <% if @article %>
+<h3>
+  <ul>
+    <% if @article %>
     <% @article.errors().full_messages().each do |message| %>
-      <li><%= message%></li>
+    <li><%= message%></li>
     <% end %>
-  <% end %>
+    <% end %>
 
-  <% if @new_tag %>
+    <% if @new_tag %>
     <% @new_tag.errors().full_messages().each do |message| %>
-      <li><%= message%></li>
+    <li><%= message%></li>
     <% end %>
-  <% end %>
-</ul>
+    <% end %>
+  </ul>
+</h3>
 
-<h3><a href="/main" class="btn btn-primary">Try Again</a></h3>
+<h3><a href="/main" class="button2">Try Again</a></h3>
+
+<img  class="error" src="emoji.gif">
